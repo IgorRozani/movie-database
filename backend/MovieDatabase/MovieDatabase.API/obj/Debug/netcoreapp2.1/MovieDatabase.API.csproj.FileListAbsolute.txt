@@ -1,3 +1,15 @@
 C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.csproj.CoreCompileInputs.cache
 C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.AssemblyInfoInputs.cache
 C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.AssemblyInfo.cs
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\bin\Debug\netcoreapp2.1\MovieDatabase.API.deps.json
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\bin\Debug\netcoreapp2.1\MovieDatabase.API.runtimeconfig.json
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\bin\Debug\netcoreapp2.1\MovieDatabase.API.runtimeconfig.dev.json
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\bin\Debug\netcoreapp2.1\MovieDatabase.API.dll
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.csprojAssemblyReference.cache
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.RazorAssemblyInfo.cache
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.RazorAssemblyInfo.cs
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.RazorTargetAssemblyInfo.cache
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\bin\Debug\netcoreapp2.1\MovieDatabase.API.pdb
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.dll
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.pdb
