@@ -1,0 +1,3 @@
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.csproj.CoreCompileInputs.cache
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.AssemblyInfoInputs.cache
+C:\dev\movie-database\backend\MovieDatabase\MovieDatabase.API\obj\Debug\netcoreapp2.1\MovieDatabase.API.AssemblyInfo.cs
