@@ -15,6 +15,6 @@ namespace MovieDatabase.TMDBService.Models
         [JsonProperty(PropertyName = "poster_path")]
         public string PosterPath { get; set; }
 
-        public ICollection<GenreResponse.Genre> Genres { get; set; }
+        public ICollection<GenreItem> Genres { get; set; }
     }
 }

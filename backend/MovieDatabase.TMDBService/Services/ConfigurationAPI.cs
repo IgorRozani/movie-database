@@ -1,6 +1,6 @@
 ﻿using MovieDatabase.RestClient.Interfaces;
-using MovieDatabase.TMDBService.Models;
 using MovieDatabase.TMDBService.Interfaces;
+using MovieDatabase.TMDBService.Models;
 using System.Threading.Tasks;
 
 namespace MovieDatabase.TMDBService.Services
@@ -13,5 +13,12 @@ namespace MovieDatabase.TMDBService.Services
 
         public async Task<ConfigurationResponse> GetConfigurationAsync() =>
             await _restClient.GetJsonAsync<ConfigurationResponse>(_tmdbConfig.BaseUrl, _tmdbConfig.ConfigurationPath, GetBaseParameters(false));
+
+        public async Task<string> GetImageBaseUrlAsync()
+        {
+            var configuration = await GetConfigurationAsync();
+
+            return configuration?.Images?.BaseUrl;
+        }
     }
 }

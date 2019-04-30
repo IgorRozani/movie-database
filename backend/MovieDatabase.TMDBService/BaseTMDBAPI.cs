@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace MovieDatabase.TMDBService
 {
-
     public class BaseTMDBAPI
     {
-        protected TMDBConfig _tmdbConfig;
-        protected IRestClient _restClient;
+        protected readonly TMDBConfig _tmdbConfig;
+        protected readonly IRestClient _restClient;
 
         public BaseTMDBAPI(TMDBConfig tmdbConfig, IRestClient restClient)
         {

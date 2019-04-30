@@ -6,5 +6,7 @@ namespace MovieDatabase.TMDBService.Interfaces
     public interface IConfigurationAPI
     {
         Task<ConfigurationResponse> GetConfigurationAsync();
+
+        Task<string> GetImageBaseUrlAsync();
     }
 }
