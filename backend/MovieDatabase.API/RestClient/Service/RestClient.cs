@@ -1,11 +1,12 @@
 ﻿using Flurl;
 using Flurl.Http;
+using MovieDatabase.API.RestClient.Interface;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MovieDatabase.API.RestClient
+namespace MovieDatabase.API.RestClient.Service
 {
-    public class RestClient
+    public class RestClient : IRestClient
     {
         public async Task<T> GetJsonAsync<T>(string url, string path, Dictionary<string, string> parameters)
         {

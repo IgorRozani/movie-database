@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieDatabase.API.TMDB;
-using MovieDatabase.API.TMDB.Genre;
-using MovieDatabase.API.TMDB.Genre.Model;
+using MovieDatabase.API.RestClient.Interface;
+using MovieDatabase.API.TMDBService.Models;
+using MovieDatabase.TMDBService.Interface;
 
 namespace MovieDatabase.API.Controllers
 {
@@ -9,11 +9,11 @@ namespace MovieDatabase.API.Controllers
     [ApiController]
     public class GenreController : BaseAPIController
     {
-        private readonly GenreAPI _genreAPI;
+        private readonly IGenreAPI _genreAPI;
 
-        public GenreController(Microsoft.Extensions.Options.IOptions<TMDBConfig> tmdbConfig) : base(tmdbConfig)
+        public GenreController(IRestClient restClient, IGenreAPI genreAPI) : base(restClient)
         {
-            _genreAPI = new GenreAPI(tmdbConfig.Value, _restClient);
+            _genreAPI = genreAPI;
         }
 
         [HttpGet]

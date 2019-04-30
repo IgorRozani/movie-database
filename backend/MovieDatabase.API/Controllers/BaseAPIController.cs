@@ -1,19 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using MovieDatabase.API.TMDB;
+using MovieDatabase.API.RestClient.Interface;
 
 namespace MovieDatabase.API.Controllers
 {
     public class BaseAPIController : ControllerBase
     {
-        protected readonly IOptions<TMDBConfig> _tmdbConfig;
-         
-        protected readonly RestClient.RestClient _restClient;
+        protected readonly IRestClient _restClient;
 
-        public BaseAPIController(IOptions<TMDBConfig> tmdbConfig)
+        public BaseAPIController(IRestClient restClient)
         {
-            _tmdbConfig = tmdbConfig;
-            _restClient = new RestClient.RestClient();
+            _restClient = restClient;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MovieDatabase.API.TMDB.Genre.Model
+namespace MovieDatabase.API.TMDBService.Models
 {
     public class GenreResponse
     {

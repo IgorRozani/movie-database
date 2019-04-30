@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieDatabase.API.TMDB.Movie;
-using MovieDatabase.API.TMDB.Movie.Model;
+using MovieDatabase.API.RestClient.Interface;
+using MovieDatabase.API.TMDBService.Models;
+using MovieDatabase.TMDBService.Interface;
 
 namespace MovieDatabase.API.Controllers
 {
@@ -8,11 +9,11 @@ namespace MovieDatabase.API.Controllers
     [ApiController]
     public class MovieController : BaseAPIController
     {
-        private readonly MovieAPI _movieAPI;
+        private readonly IMovieAPI _movieAPI;
 
-        public MovieController(Microsoft.Extensions.Options.IOptions<TMDB.TMDBConfig> tmdbConfig) : base(tmdbConfig)
+        public MovieController(IRestClient restClient, IMovieAPI movieAPI) : base(restClient)
         {
-            _movieAPI = new MovieAPI(tmdbConfig.Value, _restClient);
+            _movieAPI = movieAPI;
         }
 
         [HttpGet]

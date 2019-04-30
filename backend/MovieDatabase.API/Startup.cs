@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MovieDatabase.API.TMDB;
+using MovieDatabase.API.RestClient.Interface;
+using MovieDatabase.API.TMDBService;
+using MovieDatabase.API.TMDBService.Services;
+using MovieDatabase.TMDBService.Interface;
 
 namespace MovieDatabase.API
 {
@@ -23,7 +26,14 @@ namespace MovieDatabase.API
 
             services.AddOptions();
 
-            services.Configure<TMDBConfig>(Configuration.GetSection("TMDBConfig"));
+            var tmdbConfig = Configuration.GetSection("TMDBConfig").Get<TMDBConfig>();
+            services.AddSingleton(tmdbConfig);
+
+            services.AddScoped<IRestClient, RestClient.Service.RestClient>();
+            services.AddScoped<IConfigurationAPI, ConfigurationAPI>();
+            services.AddScoped<IGenreAPI, GenreAPI>();
+            services.AddScoped<IMovieAPI, MovieAPI>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

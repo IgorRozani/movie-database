@@ -1,11 +1,13 @@
-﻿using MovieDatabase.API.TMDB.Movie.Model;
+﻿using MovieDatabase.API.RestClient.Interface;
+using MovieDatabase.API.TMDBService.Models;
+using MovieDatabase.TMDBService.Interface;
 using System.Threading.Tasks;
 
-namespace MovieDatabase.API.TMDB.Movie
+namespace MovieDatabase.API.TMDBService.Services
 {
-    public class MovieAPI : BaseTMDBAPI
+    public class MovieAPI : BaseTMDBAPI, IMovieAPI
     {
-        public MovieAPI(TMDBConfig tmdbConfig, RestClient.RestClient restClient) : base(tmdbConfig, restClient)
+        public MovieAPI(TMDBConfig tmdbConfig, IRestClient restClient) : base(tmdbConfig, restClient)
         {
         }
 

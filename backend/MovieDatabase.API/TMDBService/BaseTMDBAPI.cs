@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using MovieDatabase.API.RestClient.Interface;
+using System.Collections.Generic;
 
-namespace MovieDatabase.API.TMDB
+namespace MovieDatabase.API.TMDBService
 {
 
     public class BaseTMDBAPI
     {
         protected TMDBConfig _tmdbConfig;
-        protected RestClient.RestClient _restClient;
+        protected IRestClient _restClient;
 
-        public BaseTMDBAPI(TMDBConfig tmdbConfig, RestClient.RestClient restClient)
+        public BaseTMDBAPI(TMDBConfig tmdbConfig, IRestClient restClient)
         {
             _tmdbConfig = tmdbConfig;
             _restClient = restClient;
