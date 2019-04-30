@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MovieDatabase.API.RestClient.Interface
+namespace MovieDatabase.RestClient.Interfaces
 {
     public interface IRestClient
     {

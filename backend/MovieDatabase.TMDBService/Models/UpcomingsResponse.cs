@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace MovieDatabase.API.TMDBService.Models
+namespace MovieDatabase.TMDBService.Models
 {
     public class UpcomingsResponse
     {

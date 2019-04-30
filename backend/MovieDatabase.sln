@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieDatabase.API", "MovieDatabase.API\MovieDatabase.API.csproj", "{BF37B80C-6C61-4E83-8335-8D821C64123E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.TMDBService", "MovieDatabase.TMDBService\MovieDatabase.TMDBService.csproj", "{D18E5235-D604-4876-A124-930A7D0B9374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDatabase.RestClient", "MovieDatabase.RestClient\MovieDatabase.RestClient.csproj", "{4F80CC61-4F62-424C-B216-2426A9FB075A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BF37B80C-6C61-4E83-8335-8D821C64123E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF37B80C-6C61-4E83-8335-8D821C64123E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF37B80C-6C61-4E83-8335-8D821C64123E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D18E5235-D604-4876-A124-930A7D0B9374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18E5235-D604-4876-A124-930A7D0B9374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18E5235-D604-4876-A124-930A7D0B9374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18E5235-D604-4876-A124-930A7D0B9374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F80CC61-4F62-424C-B216-2426A9FB075A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F80CC61-4F62-424C-B216-2426A9FB075A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F80CC61-4F62-424C-B216-2426A9FB075A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F80CC61-4F62-424C-B216-2426A9FB075A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

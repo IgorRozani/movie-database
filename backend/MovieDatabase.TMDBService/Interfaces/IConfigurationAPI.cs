@@ -1,7 +1,7 @@
-﻿using MovieDatabase.API.TMDBService.Models;
+﻿using MovieDatabase.TMDBService.Models;
 using System.Threading.Tasks;
 
-namespace MovieDatabase.TMDBService.Interface
+namespace MovieDatabase.TMDBService.Interfaces
 {
     public interface IConfigurationAPI
     {

@@ -1,4 +1,4 @@
-﻿namespace MovieDatabase.TMDBService.Configuration
+﻿namespace MovieDatabase.TMDBService
 {
     public class TMDBConfig
     {

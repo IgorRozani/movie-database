@@ -1,10 +1,10 @@
 ﻿using Flurl;
 using Flurl.Http;
-using MovieDatabase.API.RestClient.Interface;
+using MovieDatabase.RestClient.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MovieDatabase.API.RestClient.Service
+namespace MovieDatabase.RestClient.Services
 {
     public class RestClient : IRestClient
     {

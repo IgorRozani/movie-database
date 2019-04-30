@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieDatabase.API.RestClient.Interface;
+using MovieDatabase.RestClient.Interfaces;
 
 namespace MovieDatabase.API.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieDatabase.API.RestClient.Interface;
-using MovieDatabase.API.TMDBService.Models;
-using MovieDatabase.TMDBService.Interface;
+using MovieDatabase.RestClient.Interfaces;
+using MovieDatabase.TMDBService.Models;
+using MovieDatabase.TMDBService.Interfaces;
 
 namespace MovieDatabase.API.Controllers
 {

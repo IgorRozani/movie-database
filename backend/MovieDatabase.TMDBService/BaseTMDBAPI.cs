@@ -1,7 +1,7 @@
-﻿using MovieDatabase.API.RestClient.Interface;
+﻿using MovieDatabase.RestClient.Interfaces;
 using System.Collections.Generic;
 
-namespace MovieDatabase.API.TMDBService
+namespace MovieDatabase.TMDBService
 {
 
     public class BaseTMDBAPI

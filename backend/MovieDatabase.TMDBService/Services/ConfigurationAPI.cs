@@ -1,9 +1,9 @@
-﻿using MovieDatabase.API.RestClient.Interface;
-using MovieDatabase.API.TMDBService.Models;
-using MovieDatabase.TMDBService.Interface;
+﻿using MovieDatabase.RestClient.Interfaces;
+using MovieDatabase.TMDBService.Models;
+using MovieDatabase.TMDBService.Interfaces;
 using System.Threading.Tasks;
 
-namespace MovieDatabase.API.TMDBService.Services
+namespace MovieDatabase.TMDBService.Services
 {
     public class ConfigurationAPI : BaseTMDBAPI, IConfigurationAPI
     {
