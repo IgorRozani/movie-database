@@ -9,7 +9,7 @@ namespace MovieDatabase.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController : ControllerBase
+    public class MovieController : BaseAPIControllre
     {
         private readonly IMovieAPI _movieAPI;
 
@@ -18,25 +18,55 @@ namespace MovieDatabase.API.Controllers
             _movieAPI = movieAPI;
         }
 
+        /// <summary>
+        /// Get movie details
+        /// </summary>
+        /// <param name="id">Movie id</param>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /api/movie/123
+        /// </remarks>
+        /// <response code="200">Movie details</response>
+        /// <response code="400">Invalid movie id</response>
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<MovieDetailResponse> GetDetails(int id)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult<MovieDetailResponse> GetDetails([FromRoute]int id)
         {
             var movie = _movieAPI.GetDetailsAsync(id);
+
+            if (movie == null)
+                return BadRequest("Invalid movie");
 
             return Ok(movie.Result);
         }
 
+        /// <summary>
+        /// Get upcoming movies list
+        /// </summary>
+        /// <param name="page">List page</param>
+        /// <param name="quantityItens">Quantity itens per page</param>
+        /// <remarks>
+        /// Sample request:
+        ///     
+        ///     GET /api/movie?page=2
+        /// </remarks>
+        /// <response code="200">Upcoming movies list</response>
+        /// <response code="400">Invalid params</response>
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult> Get(int page = 1, int amountItens = 20)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<List<UpcomingItem>>> Get([FromQuery]int page = 1, [FromQuery]int quantityItens = 20)
         {
-            if (amountItens % 20 != 0)
+            if (quantityItens % 20 != 0)
                 return BadRequest("Invalid amountItens");
 
-            var totalItems = page * amountItens;
+            var totalItems = page * quantityItens;
             var amountAPIPages = totalItems / 20;
-            var pagesFromApi = amountItens / 20;
+            var pagesFromApi = quantityItens / 20;
 
             var initialPage = amountAPIPages - (pagesFromApi - 1);
 
