@@ -1,0 +1,9 @@
+<div class="card" *ngFor="let movie of movies">
+  <img src="{{movie.posterPath}}" alt="{{movie.title}}" />
+  <p>{{movie.title}}</p>
+  <p>Release: <span>{{movie.releaseDate | date:'shortDate'}}</span></p>
+  <div>
+    <span *ngFor="let genre of movie.genres">{{genre.name | titlecase }}</span>
+  </div>
+  
+</div>
