@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using MovieDatabase.API.ViewModel.Movie;
 using MovieDatabase.TMDBService.Interfaces;
 using MovieDatabase.TMDBService.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace MovieDatabase.API.Controllers
@@ -13,7 +16,7 @@ namespace MovieDatabase.API.Controllers
     {
         private readonly IMovieAPI _movieAPI;
 
-        public MovieController(IMovieAPI movieAPI)
+        public MovieController(IMovieAPI movieAPI, IMapper mapper) : base(mapper)
         {
             _movieAPI = movieAPI;
         }
@@ -33,19 +36,23 @@ namespace MovieDatabase.API.Controllers
         [Route("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<MovieDetailResponse> GetDetails([FromRoute]int id)
+        public async Task<ActionResult<MovieDetails>> GetDetails([FromRoute]int id)
         {
-            var movie = _movieAPI.GetDetailsAsync(id);
+            if (id <= 0)
+                return BadRequest("Invalid movie id");
+
+            var movie = await _movieAPI.GetDetailsAsync(id);
 
             if (movie == null)
-                return BadRequest("Invalid movie");
+                return BadRequest("Invalid movie id");
 
-            return Ok(movie.Result);
+            return Ok(_mapper.Map<MovieDetails>(movie));
         }
 
         /// <summary>
         /// Get upcoming movies list
         /// </summary>
+        /// <param name="movieName">Movie name</param>
         /// <param name="page">List page</param>
         /// <param name="quantityItens">Quantity itens per page</param>
         /// <remarks>
@@ -59,7 +66,7 @@ namespace MovieDatabase.API.Controllers
         [Route("")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<UpcomingItem>>> Get([FromQuery]int page = 1, [FromQuery]int quantityItens = 20)
+        public async Task<ActionResult<List<MovieListItem>>> Get([Optional]string movieName, [FromQuery]int page = 1, [FromQuery]int quantityItens = 20)
         {
             if (quantityItens % 20 != 0)
                 return BadRequest("Invalid amountItens");
@@ -79,7 +86,7 @@ namespace MovieDatabase.API.Controllers
                 upcomings.AddRange(upcoming.Results);
             }
 
-            return Ok(upcomings);
+            return Ok(_mapper.Map<ICollection<MovieListItem>>(upcomings));
         }
     }
 }
