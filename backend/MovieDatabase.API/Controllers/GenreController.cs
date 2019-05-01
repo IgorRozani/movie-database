@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieDatabase.RestClient.Interfaces;
-using MovieDatabase.TMDBService.Models;
 using MovieDatabase.TMDBService.Interfaces;
+using MovieDatabase.TMDBService.Models;
 
 namespace MovieDatabase.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenreController : BaseAPIController
+    public class GenreController : ControllerBase
     {
         private readonly IGenreAPI _genreAPI;
 
-        public GenreController(IRestClient restClient, IGenreAPI genreAPI) : base(restClient)
+        public GenreController(IGenreAPI genreAPI)
         {
             _genreAPI = genreAPI;
         }

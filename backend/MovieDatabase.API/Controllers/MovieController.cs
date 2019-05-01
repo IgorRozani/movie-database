@@ -1,20 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieDatabase.RestClient.Interfaces;
-using MovieDatabase.TMDBService.Models;
 using MovieDatabase.TMDBService.Interfaces;
-using System.Threading.Tasks;
+using MovieDatabase.TMDBService.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MovieDatabase.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController : BaseAPIController
+    public class MovieController : ControllerBase
     {
         private readonly IMovieAPI _movieAPI;
 
-        public MovieController(IRestClient restClient, IMovieAPI movieAPI) : base(restClient)
+        public MovieController(IMovieAPI movieAPI)
         {
             _movieAPI = movieAPI;
         }
