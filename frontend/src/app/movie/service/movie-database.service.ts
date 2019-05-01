@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MovieDetails } from '../model/movie-details'
 import { MovieListItem } from '../model/movie-list-item';
+import { isUndefined } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +16,19 @@ export class MovieDatabaseService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }  
+  }
 
   constructor(private http: HttpClient) { }
 
-  getMovieDetail(id: number):Observable<MovieDetails>{
-    return this.http.get<MovieDetails>(this.baseApi + 'movie/'+id);
+  getMovieDetail(id: number): Observable<MovieDetails> {
+    return this.http.get<MovieDetails>(this.baseApi + 'movie/' + id);
   }
 
-  getMovies(page: number, quantityPage:number) : Observable<MovieListItem[]>{
-    const movies = this.http.get<MovieListItem[]>(this.baseApi + 'movie');
-    console.log('movies-service')
-    console.log(movies)
-    return movies;
+  getMovies(page: number, quantityPage: number): Observable<MovieListItem[]> {
+    var queryString = '?';
+    if (!isUndefined(page))
+      queryString += `page=${page}`;
+    console.log(queryString);
+    return this.http.get<MovieListItem[]>(this.baseApi + 'movie' + queryString);
   }
 }
