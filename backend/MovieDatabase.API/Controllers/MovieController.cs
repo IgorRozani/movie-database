@@ -54,7 +54,7 @@ namespace MovieDatabase.API.Controllers
         /// </summary>
         /// <param name="movieName">Movie name</param>
         /// <param name="page">List page</param>
-        /// <param name="quantityItens">Quantity itens per page</param>
+        /// <param name="quantityItems">Quantity itens per page</param>
         /// <remarks>
         /// Sample request:
         ///     
@@ -66,14 +66,14 @@ namespace MovieDatabase.API.Controllers
         [Route("")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<MovieListItem>>> Get([Optional]string movieName, [FromQuery]int page = 1, [FromQuery]int quantityItens = 20)
+        public async Task<ActionResult<List<MovieListItem>>> Get([Optional]string movieName, [FromQuery]int page = 1, [FromQuery]int quantityItems = 20)
         {
-            if (quantityItens % 20 != 0)
+            if (quantityItems % 20 != 0)
                 return BadRequest("Invalid amountItens");
 
-            var totalItems = page * quantityItens;
+            var totalItems = page * quantityItems;
             var amountAPIPages = totalItems / 20;
-            var pagesFromApi = quantityItens / 20;
+            var pagesFromApi = quantityItems / 20;
 
             var initialPage = amountAPIPages - (pagesFromApi - 1);
 
