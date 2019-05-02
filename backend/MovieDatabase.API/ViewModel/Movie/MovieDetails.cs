@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace MovieDatabase.API.ViewModel.Movie
 {
@@ -15,6 +14,6 @@ namespace MovieDatabase.API.ViewModel.Movie
 
         public string PosterPath { get; set; }
 
-        public ICollection<Genre> Genres { get; set; }
+        public string Genres { get; set; }
     }
 }

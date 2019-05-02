@@ -16,14 +16,15 @@ namespace MovieDatabase.TMDBService.Services
         {
             _configurationAPI = configurationAPI;
             _genreAPI = genreAPI;
-            GetImageConfiguration();
+            _ = GetImageConfiguration();
         }
 
         public async Task<MovieDetailResponse> GetDetailsAsync(int id)
         {
             var movieDetails = await _restClient.GetJsonAsync<MovieDetailResponse>(_tmdbConfig.BaseUrl, $"{_tmdbConfig.MovieDetailPath}/{id}", GetBaseParameters());
 
-            movieDetails.PosterPath = GetImagePath(movieDetails.PosterPath);
+            if (!string.IsNullOrEmpty(movieDetails.PosterPath))
+                movieDetails.PosterPath = GetImagePath(movieDetails.PosterPath);
 
             return movieDetails;
         }
@@ -42,8 +43,10 @@ namespace MovieDatabase.TMDBService.Services
 
             foreach (var upcoming in upcomings.Results)
             {
-                upcoming.BackdropPath = GetImagePath(upcoming.BackdropPath);
-                upcoming.PosterPath = GetImagePath(upcoming.PosterPath);
+                if (!string.IsNullOrEmpty(upcoming.BackdropPath))
+                    upcoming.BackdropPath = GetImagePath(upcoming.BackdropPath);
+                if (!string.IsNullOrEmpty(upcoming.PosterPath))
+                    upcoming.PosterPath = GetImagePath(upcoming.PosterPath);
 
                 upcoming.Genres = genres.Genres.Where(g => upcoming.GenreIds.Any(i => g.Id == i)).ToList();
             }
