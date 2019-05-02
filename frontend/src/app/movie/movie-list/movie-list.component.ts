@@ -21,8 +21,8 @@ export class MovieListComponent implements OnInit {
     this.getMovies();
   }
 
-  getMovies(page: number = 1, quantityPage: number = 40) {
-    this.movieDatabaseService.getMovies(page, quantityPage).subscribe(data => {
+  getMovies(page: number = 1) {
+    this.movieDatabaseService.getMovies(page).subscribe(data => {
       data.forEach(d => this.movies.push(d))
     })
   }
@@ -30,5 +30,9 @@ export class MovieListComponent implements OnInit {
   onScroll() {
     this.currentPage++
     this.getMovies(this.currentPage)
+  }
+
+  openDetails(id:number){
+    console.log(id)
   }
 }

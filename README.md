@@ -18,3 +18,4 @@
 ### Build instructions
 ### Third-party libraries
 - [ngx-infinite-scroll](https://www.npmjs.com/package/ngx-infinite-scroll) - Infinite scroll in the list
+- [Lato webfont](https://fonts.google.com/specimen/Lato?selection.family=Lato) - Web font
