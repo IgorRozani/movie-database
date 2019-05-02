@@ -4,4 +4,5 @@ export class MovieDetails {
     overview: string
     ReleaseDate: Date
     posterPath: string
+    genres:string
 }

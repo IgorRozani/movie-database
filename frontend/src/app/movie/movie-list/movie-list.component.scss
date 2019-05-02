@@ -1,10 +1,14 @@
 div.card {
   display: inline-block;
   margin: 5px;
+  width: 350px;
+  text-align: center;
 
-  div {
-    span {
-        padding: 5px;
-    }
+  p {
+    width: 350px;
+  }
+
+  p.title{
+      font-weight: bold;
   }
 }

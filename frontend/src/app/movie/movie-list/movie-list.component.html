@@ -1,10 +1,9 @@
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
   <div class="card" *ngFor="let movie of movies">
-    <img src="{{movie.posterPath}}" alt="{{movie.title}}" />
-    <p>{{movie.title}}</p>
+    <img *ngIf="movie.posterPath" src="{{movie.posterPath}}" alt="{{movie.title}}" />
+    <img *ngIf="!movie.posterPath" src="../../../assets/no-image.gif" alt="{{movie.title}}" />
+    <p class="title">{{movie.title}}</p>
+    <p>{{movie.genres }}</p>
     <p>Release: <span>{{movie.releaseDate | date:'shortDate'}}</span></p>
-    <div>
-      <span *ngFor="let genre of movie.genres">{{genre.name | titlecase }}</span>
-    </div>
   </div>
 </div>
