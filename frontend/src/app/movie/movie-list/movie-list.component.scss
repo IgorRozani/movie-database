@@ -1,14 +1,23 @@
 div.card {
   display: inline-block;
-  margin: 5px;
+  margin: 10px;
   width: 350px;
   text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid #011f4b;
 
   p {
     width: 350px;
   }
 
-  p.title{
-      font-weight: bold;
+  p.title {
+    font-weight: bold;
   }
+}
+
+div.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
