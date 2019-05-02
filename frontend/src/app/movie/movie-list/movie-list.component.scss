@@ -1,24 +1,30 @@
-div.card {
-  display: inline-block;
-  margin: 10px;
-  width: 350px;
-  text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+div.card-content {
   padding: 20px;
-  border-radius: 25px;
-  border: 2px solid #011f4b;
 
-  p {
+  div.card {
+    display: inline-block;
+    margin: 10px;
     width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    padding: 30px 20px;
+    border-radius: 25px;
+    border: 2px solid #011f4b;
+    cursor: pointer;
+
+
+    p {
+      width: 350px;
+    }
+
+    p.title {
+      font-weight: bold;
+      font-size: 25px;
+    }
   }
 
-  p.title {
-    font-weight: bold;
-    font-size: 25px;
+  div.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-}
-
-div.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
