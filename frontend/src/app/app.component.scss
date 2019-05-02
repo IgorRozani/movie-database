@@ -3,8 +3,13 @@ div.header {
   background-color: #011f4b;;
   padding: 20px 10px;
 
+  img{
+    display: inline-block;
+    margin-left: 30px;
+  }
+
   h1{
     color: #b3cde0;
-    margin-left: 30px;
+    display: inline-block;
   }
 }
