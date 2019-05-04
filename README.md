@@ -50,4 +50,5 @@ ng serve --proxy-config proxy.config.js
 ```
 ### Third-party libraries
 - [ngx-infinite-scroll](https://www.npmjs.com/package/ngx-infinite-scroll) - Infinite scroll in the list;
-- [Lato webfont](https://fonts.google.com/specimen/Lato?selection.family=Lato) - Web font.
+- [Lato webfont](https://fonts.google.com/specimen/Lato?selection.family=Lato) - Web font;
+- [NGX-SMART-MODAL](https://www.npmjs.com/package/ngx-smart-modal) - For the details modal.

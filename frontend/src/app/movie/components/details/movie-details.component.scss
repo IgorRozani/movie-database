@@ -1,0 +1,32 @@
+.row {
+  display: flex;
+  flex-flow: wrap;
+
+  .column-image {
+    flex: 1;
+    margin-bottom: 10px;
+  }
+
+  .column-text {
+    flex: 2;
+    padding: 0px 10px;
+
+    p {
+      margin-top: 0px;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    p.label {
+      font-weight: bold;
+    }
+  }
+}
+
+
+
+h1 {
+  text-align: center;
+}

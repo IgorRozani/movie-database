@@ -13,9 +13,12 @@ div.card-content {
     border: 2px solid #011f4b;
     cursor: pointer;
 
-
     p {
       width: 350px;
+
+      span{
+        font-weight: bold;
+      }
     }
 
     p.title {

@@ -7,6 +7,7 @@ import { MovieListComponent } from './movie/components/list/movie-list.component
 import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MovieDetailsComponent } from './movie/components/details/movie-details.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MovieDetailsComponent } from './movie/components/details/movie-details.
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

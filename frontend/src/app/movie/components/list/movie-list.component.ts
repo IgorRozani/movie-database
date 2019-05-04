@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieDatabaseService } from 'src/app/movie/services/movie-database.service';
 import { MovieListItem } from '../../models/movie-list-item';
 import { MovieDetails } from '../../models/movie-details';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'movie-list',
@@ -14,7 +15,7 @@ export class MovieListComponent implements OnInit {
   private movies: MovieListItem[];
   private selectedMovie: MovieDetails;
 
-  constructor(private movieDatabaseService: MovieDatabaseService) {
+  constructor(private movieDatabaseService: MovieDatabaseService, public ngxSmartModalService: NgxSmartModalService) {
   }
 
   ngOnInit() {
@@ -38,6 +39,7 @@ export class MovieListComponent implements OnInit {
     this.movieDatabaseService.getMovieDetail(id).subscribe(data => {
       console.log(data)
       this.selectedMovie = data;
+      this.ngxSmartModalService.getModal('movieDetailsModal').open()
     });
 
   }
