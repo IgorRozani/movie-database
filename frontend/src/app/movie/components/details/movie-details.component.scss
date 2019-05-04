@@ -3,7 +3,10 @@
   flex-flow: wrap;
 
   .column-image {
-    flex: 1;
+    min-width: 300px;
+    max-width: 300px;
+    flex-basis: auto;
+    flex-grow: 1;
     margin-bottom: 10px;
   }
 
