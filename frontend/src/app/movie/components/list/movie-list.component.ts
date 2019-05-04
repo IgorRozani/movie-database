@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieDatabaseService } from 'src/app/movie/service/movie-database.service';
-import { MovieListItem } from '../model/movie-list-item';
-import { isUndefined } from 'util';
+import { MovieDatabaseService } from 'src/app/movie/services/movie-database.service';
+import { MovieListItem } from '../../models/movie-list-item';
+import { MovieDetails } from '../../models/movie-details';
 
 @Component({
   selector: 'movie-list',
@@ -10,8 +10,9 @@ import { isUndefined } from 'util';
 })
 export class MovieListComponent implements OnInit {
 
-  movies: MovieListItem[];
   private currentPage: number = 1;
+  private movies: MovieListItem[];
+  private selectedMovie: MovieDetails;
 
   constructor(private movieDatabaseService: MovieDatabaseService) {
   }
@@ -32,7 +33,12 @@ export class MovieListComponent implements OnInit {
     this.getMovies(this.currentPage)
   }
 
-  openDetails(id:number){
+  openDetails(id: number) {
     console.log(id)
+    this.movieDatabaseService.getMovieDetail(id).subscribe(data => {
+      console.log(data)
+      this.selectedMovie = data;
+    });
+
   }
 }

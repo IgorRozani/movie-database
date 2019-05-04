@@ -1,4 +1,8 @@
-<div class="card-content" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+<div *ngIf="selectedMovie">
+  <movie-details [movie]="selectedMovie"></movie-details>
+</div>
+<div class="card-content" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()">
   <div class="card" *ngFor="let movie of movies" (click)="openDetails(movie.id)">
     <img *ngIf="movie.posterPath" src="{{movie.posterPath}}" alt="{{movie.title}}" />
     <img *ngIf="!movie.posterPath" src="../../../assets/no-image.gif" alt="{{movie.title}}" />
