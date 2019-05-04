@@ -6,6 +6,22 @@ namespace MovieDatabase.TMDBService.Models
     public class UpcomingsResponse
     {
         public ICollection<UpcomingItem> Results { get; set; }
+
+        public int Page { get; set; }
+
+        [JsonProperty(PropertyName = "total_results")]
+        public int TotalResults { get; set; }
+
+        [JsonProperty(PropertyName = "total_pages")]
+        public int TotalPages { get; set; }
+
+        public DatePeriod Dates { get; set; }
+    }
+
+    public class DatePeriod
+    {
+        public string Maximum { get; set; }
+        public string Minimum { get; set; }
     }
 
     public class UpcomingItem
