@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MovieDatabase.API.ViewModel.Genre;
-using MovieDatabase.TMDBService.Models;
+using MovieDatabase.Repository.Models;
 
 namespace MovieDatabase.API.AutoMapper
 {
@@ -8,7 +8,7 @@ namespace MovieDatabase.API.AutoMapper
     {
         public GenreProfile()
         {
-            CreateMap<GenreItem, GenreListItem>();
+            CreateMap<Genre, GenreListItem>();
         }
     }
 }

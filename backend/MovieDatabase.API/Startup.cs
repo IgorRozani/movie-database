@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MovieDatabase.RestClient.Interfaces;
-using MovieDatabase.TMDBService;
-using MovieDatabase.TMDBService.Interfaces;
-using MovieDatabase.TMDBService.Services;
+using MovieDatabase.Repository;
+using MovieDatabase.Repository.Interfaces;
+using MovieDatabase.Repository.Repository;
 using System;
 using System.IO;
 using System.Reflection;
@@ -31,13 +31,17 @@ namespace MovieDatabase.API
 
             services.AddOptions();
 
-            var tmdbConfig = Configuration.GetSection("TMDBConfig").Get<TMDBConfig>();
-            services.AddSingleton(tmdbConfig);
+            services.AddDbContext<MovieDataContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IRestClient, RestClient.Services.RestClient>();
-            services.AddScoped<IConfigurationAPI, ConfigurationAPI>();
-            services.AddScoped<IGenreAPI, GenreAPI>();
-            services.AddScoped<IMovieAPI, MovieAPI>();
+            //var tmdbConfig = Configuration.GetSection("TMDBConfig").Get<TMDBConfig>();
+            //services.AddSingleton(tmdbConfig);
+
+            //services.AddScoped<IRestClient, RestClient.Services.RestClient>();
+            //services.AddScoped<IConfigurationAPI, ConfigurationAPI>();
+            //services.AddScoped<IGenreAPI, GenreAPI>();
+            //services.AddScoped<IMovieAPI, MovieAPI>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
 
             services.AddSwaggerGen(s =>
             {

@@ -1,24 +1,22 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MovieDatabase.API.ViewModel.Movie;
-using MovieDatabase.TMDBService.Interfaces;
-using MovieDatabase.TMDBService.Models;
+using MovieDatabase.Repository.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace MovieDatabase.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/movies")]
     [ApiController]
     public class MovieController : BaseAPIControllre
     {
-        private readonly IMovieAPI _movieAPI;
+        private readonly IMovieRepository _movieRepository;
 
-        public MovieController(IMovieAPI movieAPI, IMapper mapper) : base(mapper)
+        public MovieController(IMapper mapper, IMovieRepository movieRepository) : base(mapper)
         {
-            _movieAPI = movieAPI;
+            _movieRepository = movieRepository;
         }
 
         /// <summary>
@@ -32,19 +30,21 @@ namespace MovieDatabase.API.Controllers
         /// </remarks>
         /// <response code="200">Movie details</response>
         /// <response code="400">Invalid movie id</response>
+        /// <response code="404">Movie not found</response>
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<MovieDetails>> GetDetails([FromRoute]int id)
+        [ProducesResponseType(404)]
+        public ActionResult<MovieDetails> GetDetails([FromRoute]int id)
         {
             if (id <= 0)
                 return BadRequest("Invalid movie id");
 
-            var movie = await _movieAPI.GetDetailsAsync(id);
+            var movie = _movieRepository.Get(id);
 
             if (movie == null)
-                return BadRequest("Invalid movie id");
+                return NotFound();
 
             return Ok(_mapper.Map<MovieDetails>(movie));
         }
@@ -66,27 +66,18 @@ namespace MovieDatabase.API.Controllers
         [Route("")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<List<MovieListItem>>> Get([Optional]string movieName, [FromQuery]int page = 1, [FromQuery]int quantityItems = 20)
+        public ActionResult<List<MovieListItem>> Get([Optional]string movieName, [FromQuery]int page = 1, [FromQuery]int quantityItems = 20)
         {
-            if (quantityItems % 20 != 0)
-                return BadRequest("Invalid amountItens");
+            if (page <= 0 || quantityItems <= 0)
+                return BadRequest("Invalid paramters.");
 
-            var totalItems = page * quantityItems;
-            var amountAPIPages = totalItems / 20;
-            var pagesFromApi = quantityItems / 20;
+            var moviesQuery = _movieRepository.GetAll();
+            if (!string.IsNullOrEmpty(movieName))
+                moviesQuery = moviesQuery.Where(m => m.Title.Contains(movieName));
 
-            var initialPage = amountAPIPages - (pagesFromApi - 1);
+            var movies = moviesQuery.OrderBy(m => m.ReleaseDate).Skip((page - 1) * quantityItems).Take(quantityItems).ToList();
 
-            var upcomings = new List<UpcomingItem>();
-            for (var i = initialPage; i <= amountAPIPages; i++)
-            {
-                var upcoming = await _movieAPI.GetUpcomingsAsync(i);
-                if (!upcoming.Results.Any())
-                    break;
-                upcomings.AddRange(upcoming.Results);
-            }
-
-            return Ok(_mapper.Map<ICollection<MovieListItem>>(upcomings));
+            return Ok(_mapper.Map<ICollection<MovieListItem>>(movies));
         }
     }
 }

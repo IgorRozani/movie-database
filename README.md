@@ -13,9 +13,9 @@ The project has three projects:
 
 #### MovieDatabase.API
 The web api project that has the rest enpoints. It has 3 endpoints:
-- GET /api/movie - For getting the list of upcoming movies, you can filter the list by page, quantity items per page and by movie name (not implemented);
-- GET /api/movie/{id} - For getting the movie details;
-- GET /api/genre - For getting the genres list.
+- GET /api/movies - For getting the list of upcoming movies, you can filter the list by page, quantity items per page and by movie name (not implemented);
+- GET /api/movies/{id} - For getting the movie details;
+- GET /api/genres - For getting the genres list.
 The API has a swagger documentation, you can access it by /swagger and see models and response details.
 
 #### MovieDatabase.RestClient
@@ -24,7 +24,7 @@ This project is reponsible to realise the call and retrieve data from external r
 #### MovieDatabase.TMDBService
 The project responsible for reading data and preparing the data from the TMDB api, it realises the call in the following api:
 - GET /configuration - To retrieve data to create the image path;
-- GET /genre/movie/list - To retrieve data from all genres;
+- GET /genre/movies/list - To retrieve data from all genres;
 - GET /movie/upcoming - To retrieve the upcoming movie list;
 - GET /movie/{id} - To retrieve the movie details.
 This project depends of a section in the appsettings.json to get the data from the api address, api_key and other configurations.
@@ -33,7 +33,8 @@ This project depends of a section in the appsettings.json to get the data from t
 - [Flurl](https://flurl.dev/) - Utilized to get the data from TMDB;
 - [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) - Utilized to documentate API with swagger;
 - [Newtonsoft.Json](https://www.newtonsoft.com/json) - Utilized to manipulate json;
-- [AutoMapper](https://automapper.org/) - Utilized to convert and map objects.
+- [AutoMapper](https://automapper.org/) - Utilized to convert and map objects;
+- [Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql) - Entity Framework for MySql.
 
 ## Frontend
 The frontend was created using Angular.

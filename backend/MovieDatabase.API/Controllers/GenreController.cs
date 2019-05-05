@@ -1,22 +1,21 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MovieDatabase.API.ViewModel.Genre;
-using MovieDatabase.TMDBService.Interfaces;
+using MovieDatabase.Repository.Interfaces;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
 
 namespace MovieDatabase.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/genres")]
     [ApiController]
     public class GenreController : BaseAPIControllre
     {
-        private readonly IGenreAPI _genreAPI;
+        private readonly IGenreRepository _genreRepository;
 
-        public GenreController(IGenreAPI genreAPI, IMapper mapper) : base(mapper)
+        public GenreController(IGenreRepository genreRepository, IMapper mapper) : base(mapper)
         {
-            _genreAPI = genreAPI;
+            _genreRepository = genreRepository;
         }
 
         /// <summary>
@@ -32,14 +31,14 @@ namespace MovieDatabase.API.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<ICollection<GenreListItem>>>GetGenres()
+        public ActionResult<ICollection<GenreListItem>> GetGenres()
         {
-            var genres = await _genreAPI.GetGenresAsync();
+            var genres = _genreRepository.GetAll().ToList();
 
-            if (genres == null || genres.Genres == null)
+            if (genres == null || !genres.Any())
                 return BadRequest();
 
-            var genresViewModel = _mapper.Map<ICollection<GenreListItem>>(genres.Genres);
+            var genresViewModel = _mapper.Map<ICollection<GenreListItem>>(genres);
 
             return Ok(genresViewModel.OrderBy(g => g.Name));
         }
