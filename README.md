@@ -41,10 +41,10 @@ The frontend was created using Angular.
 ### Screenshots
 
 #### List page
-![List page](img/list-page.png)
+![List page](img/list-page.PNG)
 
 #### Details page
-![Details page](img/details-modal.png)
+![Details page](img/details-modal.PNG)
 
 ### Architecture
 The project is separeted by contexts, so i created a movie folder to group all the movie components, so inside it has a subdivision for the components, models and services folders.
