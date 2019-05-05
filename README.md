@@ -38,6 +38,13 @@ This project depends of a section in the appsettings.json to get the data from t
 ## Frontend
 The frontend was created using Angular.
 
+### Screenshots
+
+#### List page
+![List page](img/list-page.png)
+
+#### Details page
+![Details page](img/details-modal.png)
 
 ### Architecture
 The project is separeted by contexts, so i created a movie folder to group all the movie components, so inside it has a subdivision for the components, models and services folders.
