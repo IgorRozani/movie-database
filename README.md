@@ -36,19 +36,20 @@ This project depends of a section in the appsettings.json to get the data from t
 - [AutoMapper](https://automapper.org/) - Utilized to convert and map objects.
 
 ## Frontend
-The frontend was created using Angular. 
-I wasn't able to finish it on time, so i only have the movie list.
+The frontend was created using Angular.
+
 
 ### Architecture
-Inside the app folder, i was going to separete each context in a specific folder, so inside the movie folder i have all the movie components, services and models.
-For style, i decided to not use any css framework and create a simple and clean css by myself.
+The project is separeted by contexts, so i created a movie folder to group all the movie components, so inside it has a subdivision for the components, models and services folders.
+
+For style, i decided to not use any css framework and created a simple and clean css by myself, and i based the site colors in the [Beautiful Blues Color Palette](https://www.color-hex.com/color-palette/1294).
+
+### Third-party libraries
+- [ngx-infinite-scroll](https://www.npmjs.com/package/ngx-infinite-scroll) - Infinite scroll in the list;
+- [ngx-smart-modal](https://www.npmjs.com/package/ngx-smart-modal) - For the details modal.
 
 ### Build instructions
 To run both projects local, it's necessary to use a proxy:
 ```
 ng serve --proxy-config proxy.config.js
 ```
-### Third-party libraries
-- [ngx-infinite-scroll](https://www.npmjs.com/package/ngx-infinite-scroll) - Infinite scroll in the list;
-- [Lato webfont](https://fonts.google.com/specimen/Lato?selection.family=Lato) - Web font;
-- [NGX-SMART-MODAL](https://www.npmjs.com/package/ngx-smart-modal) - For the details modal.
