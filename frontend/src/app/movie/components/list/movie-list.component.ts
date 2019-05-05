@@ -13,7 +13,8 @@ export class MovieListComponent implements OnInit {
 
   private currentPage: number = 1;
   private movies: MovieListItem[];
-  private selectedMovie: MovieDetails;
+  selectedMovie: MovieDetails;
+  private movieName:string;
 
   constructor(private movieDatabaseService: MovieDatabaseService, public ngxSmartModalService: NgxSmartModalService) {
   }
@@ -23,24 +24,29 @@ export class MovieListComponent implements OnInit {
     this.getMovies();
   }
 
-  getMovies(page: number = 1) {
-    this.movieDatabaseService.getMovies(page).subscribe(data => {
+  getMovies(page: number = 1, movieName:string = null) {
+    this.movieDatabaseService.getMovies(page, undefined, movieName).subscribe(data => {
       data.forEach(d => this.movies.push(d))
     })
   }
 
   onScroll() {
     this.currentPage++
-    this.getMovies(this.currentPage)
+    this.getMovies(this.currentPage, this.movieName)
   }
 
   openDetails(id: number) {
-    console.log(id)
     this.movieDatabaseService.getMovieDetail(id).subscribe(data => {
-      console.log(data)
       this.selectedMovie = data;
       this.ngxSmartModalService.getModal('movieDetailsModal').open()
     });
 
+  }
+
+  searchMovie(movieName: string) {
+    this.movies = []
+    this.movieName = movieName
+    this.currentPage = 1
+    this.getMovies(1, movieName)
   }
 }

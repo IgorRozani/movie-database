@@ -18,6 +18,7 @@ export class MovieDatabaseService {
   }
 
   getMovies(page: number = 1, quantityPage: number = 40, movieName: string = null): Observable<MovieListItem[]> {
+    console.log(`${this.baseApi}movie?page=${page}&quantityPage=${quantityPage}&movieName=${movieName}`)
     return this.http.get<MovieListItem[]>(`${this.baseApi}movie?page=${page}&quantityPage=${quantityPage}&movieName=${movieName}`);
   }
 }
