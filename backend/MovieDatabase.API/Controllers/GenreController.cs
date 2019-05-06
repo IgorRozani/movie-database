@@ -31,6 +31,7 @@ namespace MovieDatabase.API.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
+        [Route("")]
         public ActionResult<ICollection<GenreListItem>> GetGenres()
         {
             var genres = _genreRepository.GetAll().ToList();
