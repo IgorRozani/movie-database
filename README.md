@@ -24,7 +24,7 @@ This project is reponsible to realise the call and retrieve data from external r
 #### MovieDatabase.TMDBService
 The project responsible for reading data and preparing the data from the TMDB api, it realises the call in the following api:
 - GET /configuration - To retrieve data to create the image path;
-- GET /genre/movies/list - To retrieve data from all genres;
+- GET /genre/movie/list - To retrieve data from all genres;
 - GET /movie/upcoming - To retrieve the upcoming movie list;
 - GET /movie/{id} - To retrieve the movie details.
 This project depends of a section in the appsettings.json to get the data from the api address, api_key and other configurations.
