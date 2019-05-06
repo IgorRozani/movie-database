@@ -4,7 +4,7 @@ using MovieDatabase.Repository.Models;
 
 namespace MovieDatabase.Repository.Configurations
 {
-    public class UpcomingMovieConfiguration : IEntityTypeConfiguration<Movie>
+    public class MovieConfiguration : IEntityTypeConfiguration<Movie>
     {
         public void Configure(EntityTypeBuilder<Movie> builder)
         {
@@ -15,6 +15,8 @@ namespace MovieDatabase.Repository.Configurations
             builder.Property(u => u.ReleaseDate).IsRequired();
 
             builder.HasMany(u => u.MovieGenres).WithOne(mg => mg.Movie).HasForeignKey(mg => mg.MovieId);
+
+            builder.ToTable("Movie");
         }
     }
 }

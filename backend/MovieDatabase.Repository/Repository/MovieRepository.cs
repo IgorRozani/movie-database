@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieDatabase.Repository.Interfaces;
 using MovieDatabase.Repository.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MovieDatabase.Repository.Repository
@@ -11,15 +12,34 @@ namespace MovieDatabase.Repository.Repository
         {
         }
 
-        public Movie Add(Movie movie) =>
-            _context.Movies.Add(movie).Entity;
+        public Movie Add(Movie movie)
+        {
+            var movieEntity = _context.Movies.Add(movie).Entity;
 
-        public void Update(Movie movie) =>
+            AddMovieGenres(movie.MovieGenres);
+
+            return movieEntity;
+        }
+
+        public void Update(Movie movie)
+        {
             _context.Entry(movie).State = EntityState.Modified;
+
+            var movieDb = _context.Movies
+                .Include(m => m.MovieGenres)
+                .Include("MovieGenres.Genre").AsNoTracking().FirstOrDefault(m => m.Id == movie.Id);
+            if (movieDb != null)
+                RemoveMovieGenres(movieDb.MovieGenres);
+
+            AddMovieGenres(movie.MovieGenres);
+        }
 
         public void Delete(int id)
         {
-            var movie = _context.Movies.Find(id);
+            var movie = Get(id);
+
+            RemoveMovieGenres(movie.MovieGenres);
+
             _context.Movies.Remove(movie);
         }
 
@@ -31,6 +51,18 @@ namespace MovieDatabase.Repository.Repository
         public IQueryable<Movie> GetAll() =>
             _context.Movies
                 .Include(m => m.MovieGenres)
-                .Include("MovieGenres.Genre").AsQueryable();
+                .Include("MovieGenres.Genre").AsNoTracking().AsQueryable();
+
+        private void AddMovieGenres(ICollection<MovieGenre> movieGenres)
+        {
+            foreach (var movieGenre in movieGenres)
+                _context.MovieGenres.Add(movieGenre);
+        }
+
+        private void RemoveMovieGenres(ICollection<MovieGenre> movieGenres)
+        {
+            foreach (var movieGenre in movieGenres)
+                _context.MovieGenres.Remove(movieGenre);
+        }
     }
 }

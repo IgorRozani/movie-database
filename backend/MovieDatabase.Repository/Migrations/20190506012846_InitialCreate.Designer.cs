@@ -9,8 +9,8 @@ using MovieDatabase.Repository;
 namespace MovieDatabase.Repository.Migrations
 {
     [DbContext(typeof(MovieDataContext))]
-    [Migration("20190506000014_FixReleaseDateType")]
-    partial class FixReleaseDateType
+    [Migration("20190506012846_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,11 +24,12 @@ namespace MovieDatabase.Repository.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genre");
                 });
 
             modelBuilder.Entity("MovieDatabase.Repository.Models.Movie", b =>
@@ -49,7 +50,7 @@ namespace MovieDatabase.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("MovieDatabase.Repository.Models.MovieGenre", b =>

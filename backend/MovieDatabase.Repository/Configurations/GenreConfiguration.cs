@@ -14,6 +14,8 @@ namespace MovieDatabase.Repository.Configurations
             builder.Property(g => g.Name).IsRequired();
 
             builder.HasMany(g => g.MovieGenres).WithOne(mg => mg.Genre).HasForeignKey(mg => mg.GenreId);
+
+            builder.ToTable("Genre");
         }
     }
 }

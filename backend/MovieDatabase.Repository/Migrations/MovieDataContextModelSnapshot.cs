@@ -22,11 +22,12 @@ namespace MovieDatabase.Repository.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genre");
                 });
 
             modelBuilder.Entity("MovieDatabase.Repository.Models.Movie", b =>
@@ -47,7 +48,7 @@ namespace MovieDatabase.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("MovieDatabase.Repository.Models.MovieGenre", b =>
