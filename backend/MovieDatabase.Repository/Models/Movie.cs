@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MovieDatabase.Repository.Models
 {
@@ -10,7 +11,7 @@ namespace MovieDatabase.Repository.Models
 
         public string Overview { get; set; }
 
-        public string ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         public string PosterPath { get; set; }
 
