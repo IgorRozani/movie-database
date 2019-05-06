@@ -20,7 +20,7 @@ namespace MovieDatabase.Scraper.Services
             _genreRepository = genreRepository;
             _mapper = mapper;
         }
-
+      
         public void Scrape()
         {
             var tmdbGenres = _genreApi.GetGenresAsync();

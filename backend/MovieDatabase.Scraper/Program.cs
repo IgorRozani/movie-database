@@ -28,9 +28,10 @@ namespace MovieDatabase.Scraper
             var genreScraper = _serviceProvider.GetService<IGenreScraper>();
             genreScraper.Scrape();
 
-            Console.Write("Scraping movies");
+            Console.WriteLine("Scraping movies");
             var movieScraper = _serviceProvider.GetService<IMovieScraper>();
             movieScraper.Scrape();
+
 
             Console.WriteLine("Scraper has finished");
         }
@@ -51,6 +52,7 @@ namespace MovieDatabase.Scraper
                 .AddScoped<IConfigurationAPI, ConfigurationAPI>()
                 .AddScoped<IGenreAPI, GenreAPI>()
                 .AddScoped<IMovieAPI, MovieAPI>()
+                .AddScoped<IConfigurationAPI, ConfigurationAPI>()
                 .AddScoped<IMovieRepository, MovieRepository>()
                 .AddScoped<IGenreRepository, GenreRepository>()
                 .AddScoped<IGenreScraper, GenreScraper>()
