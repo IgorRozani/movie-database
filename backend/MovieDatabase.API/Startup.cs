@@ -33,13 +33,6 @@ namespace MovieDatabase.API
 
             services.AddDbContext<MovieDataContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            //var tmdbConfig = Configuration.GetSection("TMDBConfig").Get<TMDBConfig>();
-            //services.AddSingleton(tmdbConfig);
-
-            //services.AddScoped<IRestClient, RestClient.Services.RestClient>();
-            //services.AddScoped<IConfigurationAPI, ConfigurationAPI>();
-            //services.AddScoped<IGenreAPI, GenreAPI>();
-            //services.AddScoped<IMovieAPI, MovieAPI>();
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
 
