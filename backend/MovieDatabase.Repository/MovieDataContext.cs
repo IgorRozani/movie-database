@@ -16,11 +16,11 @@ namespace MovieDatabase.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.ApplyConfiguration(new GenreConfiguration());
             modelBuilder.ApplyConfiguration(new MovieConfiguration());
             modelBuilder.ApplyConfiguration(new MovieGenreConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
