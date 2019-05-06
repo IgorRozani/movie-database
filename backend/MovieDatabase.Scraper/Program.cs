@@ -46,6 +46,13 @@ namespace MovieDatabase.Scraper
 
             var tmdbConfig = configuration.GetSection("TMDBConfig").Get<TMDBConfig>();
 
+            var connectionString = string.Empty;
+#if DEBUG
+            connectionString = configuration.GetConnectionString("DebugConnection");
+#else
+            connectionString = configuration.GetConnectionString("DefaultConnection");
+#endif
+
             _serviceProvider = new ServiceCollection()
                 .AddAutoMapper()
                 .AddSingleton<IRestClient, RestClient.Services.RestClient>()
@@ -58,7 +65,7 @@ namespace MovieDatabase.Scraper
                 .AddSingleton<IGenreScraper, GenreScraper>()
                 .AddSingleton<IMovieScraper, MovieScraper>()
                 .AddSingleton(tmdbConfig)
-                .AddDbContext<MovieDataContext>(options => options.UseMySql(configuration.GetConnectionString("DefaultConnection")))
+                .AddDbContext<MovieDataContext>(options => options.UseMySql(connectionString))
             .BuildServiceProvider();
 
             var context = _serviceProvider.GetService<MovieDataContext>();

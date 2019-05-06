@@ -66,10 +66,24 @@ This project depends of a section in the appsettings.json to get the data from t
 - [Pomelo.EntityFrameworkCore.MySql](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql) - Entity Framework for MySql.
 
 ### Backend local build instructions
+#### Docker image
+To run the project is necessary to first build the images:
+- Go to the backend folder and the comands:
+
+``` 
+docker build -f API.Dockerfile -t backend-api . 
+
+docker build -f Scraper.Dockerfile -t backend-scraper .
+```
+- After creating the images, run the docker compose:
+
+``` 
+docker-compose up 
+```
+#### Run local
 To run the project, it's necessary to start the MySql Docker Container:
-- Access the root project folder and run the command ``` docker-componse up ```
+- Access the root project folder and run the command ``` docker-componse up db ```
 - Open the backend project on Visual Studio 2019
-- Run the database migration command ``` Update-database ```
 - Run the project [MovieDatabase.Scraper](#moviedatabase.scraper)
 - Run the project [MovieDatabase.API](#moviedatabase.api)
 
