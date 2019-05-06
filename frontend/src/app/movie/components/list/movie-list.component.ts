@@ -12,7 +12,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class MovieListComponent implements OnInit {
 
   private currentPage: number = 1;
-  private movies: MovieListItem[];
+  movies: MovieListItem[];
   selectedMovie: MovieDetails;
   private movieName:string;
 

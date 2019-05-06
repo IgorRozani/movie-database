@@ -2,7 +2,7 @@ export class MovieDetails {
     id: number
     title: string
     overview: string
-    ReleaseDate: Date
+    releaseDate: Date
     posterPath: string
     genres:string
 }
