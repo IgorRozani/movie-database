@@ -17,5 +17,7 @@
         public string Language { get; set; }
 
         public string ImageSize { get; set; }
+
+        public string Region { get; set; }
     }
 }
