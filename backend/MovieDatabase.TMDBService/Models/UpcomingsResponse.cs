@@ -43,7 +43,5 @@ namespace MovieDatabase.TMDBService.Models
 
         [JsonProperty(PropertyName = "genre_ids")]
         public ICollection<int> GenreIds { get; set; }
-
-        public ICollection<GenreItem> Genres { get; set; }
     }
 }

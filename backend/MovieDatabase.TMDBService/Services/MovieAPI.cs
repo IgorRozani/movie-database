@@ -1,66 +1,31 @@
 ﻿using MovieDatabase.RestClient.Interfaces;
 using MovieDatabase.TMDBService.Interfaces;
 using MovieDatabase.TMDBService.Models;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieDatabase.TMDBService.Services
 {
     public class MovieAPI : BaseTMDBAPI, IMovieAPI
     {
-        private readonly IGenreAPI _genreAPI;
-        private readonly IConfigurationAPI _configurationAPI;
         private ImageConfiguration _imageConfiguration;
 
-        public MovieAPI(TMDBConfig tmdbConfig, IRestClient restClient, IConfigurationAPI configurationAPI, IGenreAPI genreAPI) : base(tmdbConfig, restClient)
+        public MovieAPI(TMDBConfig tmdbConfig, IRestClient restClient) : base(tmdbConfig, restClient)
         {
-            _configurationAPI = configurationAPI;
-            _genreAPI = genreAPI;
-            _ = GetImageConfiguration();
         }
 
-        public async Task<MovieDetailResponse> GetDetailsAsync(int id)
-        {
-            var movieDetails = await _restClient.GetJsonAsync<MovieDetailResponse>(_tmdbConfig.BaseUrl, $"{_tmdbConfig.MovieDetailPath}/{id}", GetBaseParameters());
-
-            if (!string.IsNullOrEmpty(movieDetails.PosterPath))
-                movieDetails.PosterPath = GetImagePath(movieDetails.PosterPath);
-
-            return movieDetails;
-        }
+        public async Task<MovieDetailResponse> GetDetailsAsync(int id) =>
+            await _restClient.GetJsonAsync<MovieDetailResponse>(_tmdbConfig.BaseUrl, $"{_tmdbConfig.MovieDetailPath}/{id}", GetBaseParameters());
 
         public async Task<UpcomingsResponse> GetUpcomingsAsync(int page)
         {
             var parameters = GetBaseParameters();
             parameters.Add("page", page.ToString());
+            parameters.Add("region", _tmdbConfig.Region);
 
-            var upcomings = await _restClient.GetJsonAsync<UpcomingsResponse>(_tmdbConfig.BaseUrl, _tmdbConfig.UpcomingPath, parameters);
-
-            var genres = await _genreAPI.GetGenresAsync();
-
-            if (upcomings == null)
-                return null;
-
-            foreach (var upcoming in upcomings.Results)
-            {
-                if (!string.IsNullOrEmpty(upcoming.BackdropPath))
-                    upcoming.BackdropPath = GetImagePath(upcoming.BackdropPath);
-                if (!string.IsNullOrEmpty(upcoming.PosterPath))
-                    upcoming.PosterPath = GetImagePath(upcoming.PosterPath);
-
-                upcoming.Genres = genres.Genres.Where(g => upcoming.GenreIds.Any(i => g.Id == i)).ToList();
-            }
-
-            return upcomings;
+            return await _restClient.GetJsonAsync<UpcomingsResponse>(_tmdbConfig.BaseUrl, _tmdbConfig.UpcomingPath, parameters);
         }
 
         private string GetImagePath(string path) =>
             _imageConfiguration.BaseUrl + _tmdbConfig.ImageSize + path;
-
-        private async Task GetImageConfiguration()
-        {
-            var configuration = await _configurationAPI.GetConfigurationAsync();
-            _imageConfiguration = configuration.Images;
-        }
     }
 }
