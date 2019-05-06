@@ -24,7 +24,7 @@ namespace MovieDatabase.Repository.Repository
         }
 
         public IQueryable<Genre> GetAll() =>
-            _context.Genres.AsQueryable();
+            _context.Genres.AsNoTracking().AsQueryable();
 
         public Genre Get(int id) =>
             _context.Genres.Find(id);
