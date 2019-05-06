@@ -58,7 +58,7 @@ namespace MovieDatabase.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, MovieDataContext context)
         {
             if (env.IsDevelopment())
             {
@@ -72,10 +72,9 @@ namespace MovieDatabase.API
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(s =>
-            {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie Database API v1");
-            });
+            app.UseSwaggerUI(s => s.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie Database API v1"));
+
+            context.Database.Migrate();
         }
     }
 }

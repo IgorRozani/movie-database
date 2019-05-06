@@ -60,6 +60,9 @@ namespace MovieDatabase.Scraper
                 .AddSingleton(tmdbConfig)
                 .AddDbContext<MovieDataContext>(options => options.UseMySql(configuration.GetConnectionString("DefaultConnection")))
             .BuildServiceProvider();
+
+            var context = _serviceProvider.GetService<MovieDataContext>();
+            context.Database.Migrate();
         }
     }
 }
