@@ -32,7 +32,6 @@ namespace MovieDatabase.Scraper.Services
 
         public void Scrape()
         {
-            
             var page = 1;
             var totalPages = 0;
 

@@ -21,18 +21,8 @@ namespace MovieDatabase.Repository.Repository
             return movieEntity;
         }
 
-        public void Update(Movie movie)
-        {
+        public void Update(Movie movie) =>
             _context.Entry(movie).State = EntityState.Modified;
-
-            var movieDb = _context.Movies
-                .Include(m => m.MovieGenres)
-                .Include("MovieGenres.Genre").AsNoTracking().FirstOrDefault(m => m.Id == movie.Id);
-            if (movieDb != null)
-                RemoveMovieGenres(movieDb.MovieGenres);
-
-            AddMovieGenres(movie.MovieGenres);
-        }
 
         public void Delete(int id)
         {
