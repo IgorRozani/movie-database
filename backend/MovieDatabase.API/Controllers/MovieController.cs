@@ -66,7 +66,7 @@ namespace MovieDatabase.API.Controllers
         [Route("")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<List<MovieListItem>> Get([Optional]string movieName, [FromQuery]int page = 1, [FromQuery]int quantityItems = 20)
+        public ActionResult<List<MovieListItem>> Get([Optional]string movieName, [FromQuery]int page = 1, [FromQuery]int quantityItems = 30)
         {
             if (page <= 0 || quantityItems <= 0)
                 return BadRequest("Invalid paramters.");
