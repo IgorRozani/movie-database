@@ -11,6 +11,14 @@ I decided to use an evolutionary architecture, i started the solution with only 
 
 The project has three projects:
 
+#### MovieDatabase.Scraper
+Console application responsible for retrieving all the data from the TMDB API and insert into the database. In case a deploy, this project should run once per day to update the database. It has two scrapers:
+- GenreScraper: responsible for getting the data from Genres;
+- MovieScraper: responsible for getting the data from UpcomingMovies.
+
+#### MoviDatabase.Repository
+This project is responsible for accessing the database, the database is MySql and teh acess is made by EntityFramework. The database has 3 tables: Movie, Genre and MovieGenre.
+
 #### MovieDatabase.API
 The web api project that has the rest enpoints. It has 3 endpoints:
 - GET /api/movies - For getting the list of upcoming movies, you can filter the list by page, quantity items per page and by movie name (not implemented);
@@ -30,7 +38,7 @@ The project responsible for reading data and preparing the data from the TMDB ap
 This project depends of a section in the appsettings.json to get the data from the api address, api_key and other configurations.
 
 #### Third-party libraries
-- [Flurl](https://flurl.dev/) - Utilized to get the data from TMDB;
+- [Flurl](https://flurl.dev/) - Utilized to get the data from the TMDB API;
 - [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) - Utilized to documentate API with swagger;
 - [Newtonsoft.Json](https://www.newtonsoft.com/json) - Utilized to manipulate json;
 - [AutoMapper](https://automapper.org/) - Utilized to convert and map objects;
