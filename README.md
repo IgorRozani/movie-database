@@ -68,7 +68,7 @@ This project depends of a section in the appsettings.json to get the data from t
 ### Backend local build instructions
 #### Docker image
 To run the project is necessary to first build the images:
-- Go to the backend folder and the comands:
+- Go to the backend folder and run the commands:
 
 ``` 
 docker build -f API.Dockerfile -t backend-api . 
