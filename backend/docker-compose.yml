@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            LC_ALL: C.UTF-8
+            MYSQL_ROOT_PASSWORD: 12345678
+            MYSQL_DATABASE: MovieDatabase
+        ports:
+            - "3306:3306"
+        restart: always
+
+    scraper:
+        depends_on:
+            - db
+        image: backend-scraper  
+        build:
+            context: Scraper.Dockerfile          
+
+    api:
+        depends_on:
+            - db
+        image: backend-api
+        build:
+            context: API.Dockerfile
+        ports: 
+            - "41681:80"
